@@ -1,0 +1,181 @@
+.myaccount ul {
+	text-align: center;
+}
+
+.myaccount ul li {
+	cursor: pointer;
+	-webkit-transition: padding .05s linear;
+	-moz-transition: padding .05s linear;
+	-ms-transition: padding .05s linear;
+	-o-transition: padding .05s linear;
+	transition: padding .05s linear;
+}
+.myaccount ul li.drop {
+	position: relative;
+}
+.myaccount ul > li {
+	display: inline-block;
+	position:relative;
+}
+
+/*.myaccount ul li a b{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}*/
+.myaccount ul li a {
+	display:flex;
+	font-size:14px;
+	font-weight:600;
+	color:#3f414d;
+	-webkit-transition: all .1s ease-out;
+	-moz-transition: all .1s ease-out;
+	-ms-transition: all .1s ease-out;
+	-o-transition: all .1s ease-out;
+	transition: all .1s ease-out;
+}
+.myaccount ul li a i{
+	margin-left:3px;	
+	color: #1fa327;
+}
+.myaccount ul li a:hover {
+	color: #1fa327;
+}
+
+.myaccount .dropOut .triangle {
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #555;
+	top: -8px;
+	left: 50%;
+	margin-left: -8px;
+}
+.myaccount .dropdownContain {
+	width: 170px;
+	position: absolute;
+	z-index: 2;
+	left: 0;
+    top: -500px;
+}
+.myaccount .dropOut {
+	width: 170px;
+	background: white;
+	float: left;
+	position: relative;
+	margin-top: 0px;
+	opacity: 0;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.15);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.15);
+	box-shadow: 0 1px 3px rgba(0,0,0,.15);
+	-webkit-transition: all .1s ease-out;
+	-moz-transition: all .1s ease-out;
+	-ms-transition: all .1s ease-out;
+	-o-transition: all .1s ease-out;
+	transition: all .1s ease-out;
+}
+
+.myaccount .dropOut ul {
+	padding: 0;
+}
+
+.myaccount .dropOut ul li {
+	text-align: left;
+    display: block;
+	padding: 5px 15px;
+	color: #3f414d;
+	-webkit-transition: background .1s ease-out;
+	-moz-transition: background .1s ease-out;
+	-ms-transition: background .1s ease-out;
+	-o-transition: background .1s ease-out;
+	transition: background .1s ease-out;
+}
+
+.myaccount .dropOut ul li:first-child{
+	background:#1fa327;
+	border-radius:4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
+	color:#fff;
+	display:flex;
+	align-items:center;
+}
+.myaccount .dropOut ul li:first-child:hover {
+	background:#1fa327;
+}
+.myaccount .dropOut ul li:before{
+	display:none;
+}
+.myaccount .dropOut ul li i{
+    margin: 0 12px 0 0;
+    color: #000;
+    line-height: 25px;
+    font-size: 13px;
+}
+
+.myaccount .dropOut ul li a{
+    color: #3f414d;
+	line-height:25px;
+    font-size: 14px;
+	text-transform:capitalize;
+	font-weight:400;
+}
+
+.myaccount .dropOut ul li:hover {
+	background: #fffbfc;
+}
+.myaccount ul li:hover .dropdownContain { top: 15px; z-index: 100; }
+.myaccount ul li:hover .underline { border-bottom-color: #777; }
+.myaccount ul li:hover .dropOut { opacity: 1; margin-top: 13px; }
+
+.myaccount ul ul ul{
+	position: absolute;
+	right:170px;
+	top:0px;
+	width:170px;
+	visibility: hidden;
+	background:#fff;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.15);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.15);
+	box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+.myaccount  .dropOut ul ul li:first-child{
+	color:#3f414d;
+	background:transparent;
+}
+.myaccount .dropOut ul ul li:first-child:hover {
+	background:#fffbfc;
+}
+.myaccount ul ul li:hover ul{
+	visibility: visible;
+}
+
+/*-------------------------------------------------------*/
+/*responsive part
+/*------------------------------------------------------------------------*/
+@media(max-width:767px){    
+    .myaccount ul {
+        text-align: center;
+    }
+    .myaccount ul li a{
+        padding: 0;
+    }
+	.myaccount ul li a i{
+		color:#373737;
+		margin:0;
+	}
+	.myaccount ul li .dropdownContain { top: 30px; left:inherit; right:0; z-index: 100; }	
+}
+@media(max-width:480px){
+	.myaccount .dropOut, .myaccount .dropdownContain{width:140px;}
+	.myaccount ul ul ul{right:140px;width:140px;}
+	.myaccount .dropOut ul li a, .myaccount .dropOut ul li i{line-height:20px;font-size:12px;}
+}

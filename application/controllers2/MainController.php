@@ -1,0 +1,50 @@
+<?php
+
+//Main Controller Extends Thanks for sDenizhan
+class MainController extends CI_Controller
+{
+    private $data;
+    public function __construct()
+    {
+        parent::__construct();
+       $this->load->library("session");
+        $this->load->library("cart");
+        //$this->load->library("language");
+        $this->load->library("currency_library");
+        $this->load->helper("url");
+       // $this->load->library("language");
+
+        //Load Language File from SESSION
+        $this->setLang();
+
+        /** Actual currency info from Database
+        * from library/currency_library.php
+        * Variables: id, name, currency, code, symbol, standart
+        * example: $this->data['currency_currency'];
+        */
+        $currency_info = $this->currency_library->currency('currency');
+        //print_r($currency_info); exit();
+        $this->data['currency_currency'] = $currency_info[0]->currency;
+        $this->data['currency_symbol'] = $currency_info[0]->symbol;
+
+        /** Actual cart total infos from Shopping Cart Class
+        * from codeigniter library base
+        * Variables: $this->cart->total(), $this->cart->total_items(),
+        * example: $this->cart->total()
+        */
+        $this->data['cart_total'] = $this->cart->format_number(($this->cart->total()) * $this->data['currency_currency']);
+        
+
+        /*echo "<pre>";
+        print_r($this->data);*/
+    }
+
+    public function setLang()
+    {
+        $this->lang->load('home', $this->session->userdata('lang_file'));
+    }
+
+    public function get_data(){
+        return $this->data;
+    }
+}

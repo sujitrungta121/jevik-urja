@@ -1,0 +1,727 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Gomart: Online Grocery</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+<!-- global stylesheet -->
+<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="assets/css/all.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/themify-icons.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/site-icons.css" rel="stylesheet">
+<link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/jquery.mobile-menu.css" rel="stylesheet">
+
+<!-- FlexSlider -->
+<link rel="stylesheet" href="assets/css/flexslider.css" type="text/css" media="screen" />
+<!-- owl-carousel css -->
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+
+<!-- stylesheet main -->
+<link href="assets/css/main.css" rel="stylesheet" type="text/css">
+
+<!-- main javascript -->
+<script src="assets/js/jquery-2.2.4.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<main>
+	<div id="overlay"></div>
+
+	<!-- header -->
+	<header>
+		<!-- top-header -->
+		<section class="top-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-5">
+						<p>India's Fastest Online Shopping Destination</p>
+					</div>
+					<div class="col-xl-7">
+						<ul>
+							<li><a href="#"><img src="assets/images/india.png" width="25px" class="mr-2"> India</a></li>
+							<li><a href="#"><i class="ti-mobile"></i> Get App</a></li>
+							<li><a href="#"><i class="ti-truck"></i> Track Order</a></li>
+							<li><a href="#"><i class="ti-gift"></i> Gift Card</a></li>
+							<li><a href="#"><i class="ti-help-alt"></i> Help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //top-header -->
+		<!-- logo & category -->
+		<section class="logo-main">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-2 col-md-3">
+						<a href="index.html"><img src="assets/images/logo.png" class="img-fluid" alt="gomart"></a>
+					</div>
+					
+					<div class="col-xl-10 col-md-9">
+						<div class="cart-main">
+							<div class="item">
+								<!--a data-toggle="modal" data-target="#loginmodal"><i class="fas fa-user"></i> Account</a-->
+								<div class="myaccount">
+									<ul>
+										<li class="drop">
+											<a data-toggle="modal" data-target="#loginmodal"><b>Hi Subrata pshfasd</b> <i class="fas fa-sort-down"></i></a>
+											<div class="dropdownContain">
+												<div class="dropOut">
+													<ul>
+														<li><img src="assets/images/user-ico.png" class="mr-2"> Subrata</li>
+														<li><a href="#"><i class="ti-view-list-alt"></i> My Order</a>
+															<ul>
+																<li><a href="#"><i class="ti-write"></i> Past Order</a></li>
+																<li><a href="#"><i class="ti-write"></i> Upcoming Order</a></li>
+															</ul>
+														</li>
+														<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+														<li><a href="#"><i class="ti-lock"></i> Logout</a></li>
+													</ul>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="item">
+								<a data-toggle="modal" data-target="#cartpanel">
+								<img src="assets/images/cart-ico.png">
+								<span>10</span>
+								</a>
+							</div>
+							<div class="item">
+								<a>
+								<img src="assets/images/wish-ico.png">
+								<span>10</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //logo & category -->
+	</header>
+	<!-- //end header -->
+	
+	<!-- mobile header -->
+    <section class="m-header">
+        <div class="row">
+            <div class="col-8">
+                <div class="mm-toggle-wrap">
+                    <div class="mm-toggle">
+                        <i class="icon-menu"></i>
+                    </div>            
+                </div>
+                <a href="index.html"><img src="assets/images/m-logo.png" alt="gomart"></a>
+                <div id="mobile-menu">
+					<div class="mobile-main">
+                    <ul>                                        
+                        <li><a href="#">About Us</a> 
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Our Company</a></li>
+                                <li><a href="#">Our Visions</a></li>
+                                <li><a href="#">Our Values</a></li>
+                                <li><a href="#">Leadership</a></li>
+                                <li><a href="#">History</a></li>   
+                                <li><a href="#">Events</a>
+                                    <ul>
+                                        <li><a href="#">Event 1</a></li>
+                                        <li><a href="#">Event 2</a></li>
+                                        <li><a href="#">Event 3</a></li>
+                                        <li><a href="#">Event 4</a></li>
+                                    </ul>                            
+                                </li>                                              
+                            </ul>
+                        </li>
+                        <li><a href="#">Services</a>
+                            <ul>
+                                <li><a href="#">Services A</a>
+                                    <ul>
+                                        <li><a href="#">Services A Item 1</a></li>
+                                        <li><a href="#">Services A Item 2</a></li>
+                                        <li><a href="#">Services A Item 3</a></li>
+                                        <li><a href="#">Services A Item 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Services B</a>
+                                    <ul>
+                                        <li><a href="#">Services B Item 1</a></li>
+                                        <li><a href="#">Services B Item 2</a></li>
+                                        <li><a href="#">Services B Item 3</a></li>
+                                        <li><a href="#">Services B Item 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Services C</a>
+                                    <ul>
+                                        <li><a href="#">Services C Item 1</a></li>
+                                        <li><a href="#">Services C Item 2</a></li>
+                                        <li><a href="#">Services C Item 3</a></li>
+                                        <li><a href="#">Services C Item 4</a></li>
+                                        <li><a href="#">Services C Item 5</a></li>
+                                        <li><a href="#">Services C Item 6</a></li>
+                                        <li><a href="#">Services C Item 7</a></li>
+                                        <li><a href="#">Services C Item 8</a></li>
+                                        <li><a href="#">Services C Item 9</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Services D</a>
+                                    <ul>
+                                        <li><a href="#">Services D</a></li>
+                                        <li><a href="#">Services D Item 1</a></li>
+                                        <li><a href="#">Services D Item 2</a></li>
+                                        <li><a href="#">Services D Item 3</a></li>
+                                        <li><a href="#">Services D Item 4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Services E</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Products</a>
+                            <ul>                        
+                                <li><a href="#">Products Cat A</a></li>
+                                <li><a href="#">Products Cat B</a></li>
+                                <li><a href="#">Products Cat C</a></li>
+                                <li><a href="#">Products Cat D</a></li>
+                                <li><a href="#">Products Cat E</a></li>
+                                <li><a href="#">Products Cat F</a>
+                                    <ul>
+                                        <li><a href="#">Products Cat F Item 1</a></li>
+                                        <li><a href="#">Products Cat F Item 2</a></li>
+                                        <li><a href="#">Products Cat F Item 3</a></li>
+                                        <li><a href="#">Products Cat F Item 4</a></li>
+                                        <li><a href="#">Products Cat F Item 5</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Products Cat G</a>
+                                    <ul>
+                                        <li><a href="#">Products Cat G Item 1</a></li>
+                                        <li><a href="#">Products Cat G Item 2</a></li>
+                                        <li><a href="#">Products Cat G Item 3</a></li>
+                                        <li><a href="#">Products Cat G Item 4</a></li>
+                                        <li><a href="#">Products Cat G Item 5</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Our Clients</a>
+                            <ul>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                                <li><a href="#">Clients ABC</a></li>
+                            </ul>
+                        </li>
+						<li><a href="#">Contact Us</a></li>
+						<li>
+                            <div class="social">
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
+								<a href="https://www.facebook.com/"><i class="fab fa-twitter-square"></i></a>
+								<a href=""><i class="fab fa-instagram"></i></a>
+								<a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+								<a href=""><i class="fab fa-pinterest"></i></a>
+                            </div>
+                        </li>
+					</ul>
+					</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="cart-main">
+					
+					<div class="item">
+						<a data-toggle="modal" data-target="#cartpanel">
+						<i class="ti-shopping-cart"></i>
+						<span>10</span>
+						</a>
+					</div>
+					<div class="item">
+						<a href="#">
+						<i class="ti-heart"></i>
+						<span>10</span>
+						</a>
+					</div>
+					<div class="item">
+						<!--a data-toggle="modal" data-target="#loginmodal"><i class="fas fa-user"></i> Account</a-->
+						<div class="myaccount">
+							<ul>
+								<li class="drop">
+									<a href="#"><i class="far fa-user-circle"></i></a>
+									<div class="dropdownContain">
+										<div class="dropOut">
+											<ul>
+												<li><img src="assets/images/user-ico.png" class="mr-2"> Subrata</li>
+												<li><a href="#"><i class="ti-view-list-alt"></i> My Order</a>
+													<ul>
+														<li><a href="#"><i class="ti-write"></i> Past Order</a></li>
+														<li><a href="#"><i class="ti-write"></i> Upcoming Order</a></li>
+													</ul>
+												</li>
+												<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+												<li><a data-toggle="modal" data-target="#loginmodal"><i class="ti-lock"></i> Login</a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+            </div>
+        </div>
+    </section>
+    <!-- // mobile header -->	
+
+    <!-- desktop Menu -->
+    <nav id="myHeader">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-xl-12">
+					<div class="catnav">
+						<ul>
+							<li><a href="product-list.html">Fruits and Vegetables</a></li>
+							<li class="drop">
+								<a href="#">Brands</a>
+								<div class="dropdownContain">
+									<div class="dropOut">
+										<ul>
+											<li><a href="#">Lakme</a></li>
+											<li><a href="#">Maybelline</a></li>
+											<li><a href="#">loreal paris</a></li>
+											<li><a href="#">Biotique</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li><a href="#">Foodgrains, Oil & Masala</a></li>
+							<li><a href="#">Eggs, Meat and Fish</a></li>
+							<li><a href="#">Personal Care</a></li>
+							<li><a href="#">Beverages</a></li>
+						</ul>
+					</div>
+				</div>
+    		</div>
+    	</div>
+    </nav>
+    <!-- // desktop menu  -->	
+	
+	<!-- banner part -->
+	<section class="banner">
+		<img src="assets/images/trns-divider.png" class="img-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div aria-label="breadcrumb">
+					  <ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Fruits and Vegetables</li>
+					  </ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /end banner part -->
+
+	<!-- inner page -->
+	<section class="inner-page">
+		<div class="container">
+			<div class="inner-content">
+				<div class="row">
+					<div class="col-12">
+						<h3>About Grocery</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- //end inner page -->
+	
+	
+	<!-- app part -->
+	<section class="app-part">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-4 col-sm-4 mb-xs-2">
+					<h3><img src="assets/images/mail-ico.png"> CUSTOMER NEWSLETTER</h3>
+					<div class="form-inline mt-4">
+					  <div class="form-group mb-2">
+						<input type="text" class="form-control" id="" placeholder="Enter Your Email ID">
+					  </div>
+					  <button type="submit" class="send ml-2 mb-2">SEND</button>
+					</div>
+				</div>
+				<div class="col-xl-4 col-sm-4  mb-xs-2">
+					<h3><img src="assets/images/ph-ico.png"> EXPERIENCE THE GROCERY MOBILE APP</h3>
+					<a target="_blank" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="122px" height="36px" viewBox="0 0 135 40"><title>Google Play Store</title><path d="M130 40H5c-2.8 0-5-2.2-5-5V5c0-2.8 2.2-5 5-5h125c2.8 0 5 2.2 5 5v30c0 2.8-2.2 5-5 5z"></path><path d="M130 .8c2.3 0 4.2 1.9 4.2 4.2v30c0 2.3-1.9 4.2-4.2 4.2H5C2.7 39.2.8 37.3.8 35V5C.8 2.7 2.7.8 5 .8h125m0-.8H5C2.2 0 0 2.3 0 5v30c0 2.8 2.2 5 5 5h125c2.8 0 5-2.2 5-5V5c0-2.7-2.2-5-5-5z" fill="#a6a6a6"></path><path d="M47.4 10.2c0 .8-.2 1.5-.7 2-.6.6-1.3.9-2.2.9s-1.6-.3-2.2-.9c-.6-.6-.9-1.3-.9-2.2s.3-1.6.9-2.2c.6-.6 1.3-.9 2.2-.9.4 0 .8.1 1.2.3.4.2.7.4.9.7l-.5.5c-.4-.5-.9-.7-1.6-.7-.6 0-1.2.2-1.6.7-.5.4-.7 1-.7 1.7s.2 1.3.7 1.7 1 .7 1.6.7c.7 0 1.2-.2 1.7-.7.3-.3.5-.7.5-1.2h-2.2v-.8h2.9v.4zM52 7.7h-2.7v1.9h2.5v.7h-2.5v1.9H52v.8h-3.5V7H52v.7zm3.3 5.3h-.8V7.7h-1.7V7H57v.7h-1.7V13zm4.6 0V7h.8v6h-.8zm4.2 0h-.8V7.7h-1.7V7h4.1v.7H64l.1 5.3zm9.5-.8c-.6.6-1.3.9-2.2.9-.9 0-1.6-.3-2.2-.9-.6-.6-.9-1.3-.9-2.2s.3-1.6.9-2.2 1.3-.9 2.2-.9c.9 0 1.6.3 2.2.9s.9 1.3.9 2.2-.3 1.6-.9 2.2zm-3.8-.5c.4.4 1 .7 1.6.7s1.2-.2 1.6-.7c.4-.4.7-1 .7-1.7s-.2-1.3-.7-1.7c-.4-.4-1-.7-1.6-.7s-1.2.2-1.6.7c-.4.4-.7 1-.7 1.7s.2 1.3.7 1.7zm5.8 1.3V7h.9l2.9 4.7V7h.8v6h-.8l-3.1-4.9V13h-.7z" fill="#fff" stroke="#fff" stroke-width=".2" stroke-miterlimit="10"></path><path d="M68.1 21.8c-2.4 0-4.3 1.8-4.3 4.3 0 2.4 1.9 4.3 4.3 4.3s4.3-1.8 4.3-4.3c0-2.6-1.9-4.3-4.3-4.3zm0 6.8c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.4 1 2.4 2.6c0 1.5-1.1 2.6-2.4 2.6zm-9.3-6.8c-2.4 0-4.3 1.8-4.3 4.3 0 2.4 1.9 4.3 4.3 4.3s4.3-1.8 4.3-4.3c0-2.6-1.9-4.3-4.3-4.3zm0 6.8c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6c1.3 0 2.4 1 2.4 2.6 0 1.5-1.1 2.6-2.4 2.6zm-11.1-5.5v1.8H52c-.1 1-.5 1.8-1 2.3-.6.6-1.6 1.3-3.3 1.3-2.7 0-4.7-2.1-4.7-4.8s2.1-4.8 4.7-4.8c1.4 0 2.5.6 3.3 1.3l1.3-1.3c-1.1-1-2.5-1.8-4.5-1.8-3.6 0-6.7 3-6.7 6.6s3.1 6.6 6.7 6.6c2 0 3.4-.6 4.6-1.9 1.2-1.2 1.6-2.9 1.6-4.2 0-.4 0-.8-.1-1.1h-6.2zm45.4 1.4c-.4-1-1.4-2.7-3.6-2.7s-4 1.7-4 4.3c0 2.4 1.8 4.3 4.2 4.3 1.9 0 3.1-1.2 3.5-1.9l-1.4-1c-.5.7-1.1 1.2-2.1 1.2s-1.6-.4-2.1-1.3l5.7-2.4-.2-.5zm-5.8 1.4c0-1.6 1.3-2.5 2.2-2.5.7 0 1.4.4 1.6.9l-3.8 1.6zM82.6 30h1.9V17.5h-1.9V30zm-3-7.3c-.5-.5-1.3-1-2.3-1-2.1 0-4.1 1.9-4.1 4.3s1.9 4.2 4.1 4.2c1 0 1.8-.5 2.2-1h.1v.6c0 1.6-.9 2.5-2.3 2.5-1.1 0-1.9-.8-2.1-1.5l-1.6.7c.5 1.1 1.7 2.5 3.8 2.5 2.2 0 4-1.3 4-4.4V22h-1.8v.7zm-2.2 5.9c-1.3 0-2.4-1.1-2.4-2.6s1.1-2.6 2.4-2.6 2.3 1.1 2.3 2.6-1 2.6-2.3 2.6zm24.4-11.1h-4.5V30h1.9v-4.7h2.6c2.1 0 4.1-1.5 4.1-3.9s-2-3.9-4.1-3.9zm.1 6h-2.7v-4.3h2.7c1.4 0 2.2 1.2 2.2 2.1-.1 1.1-.9 2.2-2.2 2.2zm11.5-1.8c-1.4 0-2.8.6-3.3 1.9l1.7.7c.4-.7 1-.9 1.7-.9 1 0 1.9.6 2 1.6v.1c-.3-.2-1.1-.5-1.9-.5-1.8 0-3.6 1-3.6 2.8 0 1.7 1.5 2.8 3.1 2.8 1.3 0 1.9-.6 2.4-1.2h.1v1h1.8v-4.8c-.2-2.2-1.9-3.5-4-3.5zm-.2 6.9c-.6 0-1.5-.3-1.5-1.1 0-1 1.1-1.3 2-1.3.8 0 1.2.2 1.7.4-.2 1.2-1.2 2-2.2 2zm10.5-6.6l-2.1 5.4h-.1l-2.2-5.4h-2l3.3 7.6-1.9 4.2h1.9l5.1-11.8h-2zm-16.8 8h1.9V17.5h-1.9V30z" fill="#fff"></path><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="21.795" y1="-152.295" x2="5.012" y2="-135.513" gradientTransform="translate(0 161)"><stop offset="0" stop-color="#00a0ff"></stop><stop offset=".007" stop-color="#00a1ff"></stop><stop offset=".26" stop-color="#00beff"></stop><stop offset=".512" stop-color="#00d2ff"></stop><stop offset=".76" stop-color="#00dfff"></stop><stop offset="1" stop-color="#00e3ff"></stop></linearGradient><path d="M10.4 7.5c-.3.3-.4.8-.4 1.4V31c0 .6.2 1.1.5 1.4l.1.1L23 20.1v-.2L10.4 7.5z" fill="url(#a)"></path><linearGradient id="b" gradientUnits="userSpaceOnUse" x1="33.834" y1="-140.95" x2="9.637" y2="-140.95" gradientTransform="translate(0 161)"><stop offset="0" stop-color="#ffe000"></stop><stop offset=".409" stop-color="#ffbd00"></stop><stop offset=".775" stop-color="orange"></stop><stop offset="1" stop-color="#ff9c00"></stop></linearGradient><!-- react-text: 125 --> <!-- /react-text --><path d="M27 24.3l-4.1-4.1v-.3l4.1-4.1.1.1 4.9 2.8c1.4.8 1.4 2.1 0 2.9l-5 2.7z" fill="url(#b)"></path><linearGradient id="c" gradientUnits="userSpaceOnUse" x1="24.816" y1="-138.715" x2="2.058" y2="-115.957" gradientTransform="translate(0 161)"><stop offset="0" stop-color="#ff3a44"></stop><stop offset="1" stop-color="#c31162"></stop></linearGradient><path d="M27.1 24.2L22.9 20 10.4 32.5c.5.5 1.2.5 2.1.1l14.6-8.4" fill="url(#c)"></path><linearGradient id="d" gradientUnits="userSpaceOnUse" x1="7.261" y1="-160.788" x2="17.424" y2="-150.625" gradientTransform="translate(0 161)"><stop offset="0" stop-color="#32a071"></stop><stop offset=".069" stop-color="#2da771"></stop><stop offset=".476" stop-color="#15cf74"></stop><stop offset=".801" stop-color="#06e775"></stop><stop offset="1" stop-color="#00f076"></stop></linearGradient><path d="M27.1 15.8L12.5 7.5c-.9-.5-1.6-.4-2.1.1L22.9 20l4.2-4.2z" fill="url(#d)"></path><!-- react-text: 138 --> <!-- /react-text --><path d="M27 24.1l-14.5 8.2c-.8.5-1.5.4-2 0l-.1.1.1.1c.5.4 1.2.5 2 0L27 24.1z" opacity=".2"></path><!-- react-text: 140 --> <!-- /react-text --><path d="M10.4 32.3c-.3-.3-.4-.8-.4-1.4v.1c0 .6.2 1.1.5 1.4v-.1h-.1zm21.6-11l-5 2.8.1.1 4.9-2.8c.7-.4 1-.9 1-1.4 0 .5-.4.9-1 1.3z" opacity=".12"></path><!-- react-text: 142 --> <!-- /react-text --><path d="M12.5 7.6L32 18.7c.6.4 1 .8 1 1.3 0-.5-.3-1-1-1.4l-19.5-11c-1.4-.9-2.5-.3-2.5 1.3V9c0-1.5 1.1-2.2 2.5-1.4z" opacity=".25" fill="#fff"></path></svg></a>
+					
+				</div>
+				<div class="col-xl-4 col-sm-4">
+					<h3><img src="assets/images/land-ico.png"> FOR ANY HELP YOU MAY CALL US AT <small>+91 123-456-7890</small></h3>
+					<p class="p-l3">(Monday to Saturday, 9AM - 9PM)</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- //app part -->
+	
+	<!-- footer part -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-3 col-sm-4 col-6">
+					<h3>Grocery Shop</h3>
+					<!-- <img src="assets/images/footer-logo.png" class="img-fluid" alt="gomart"> -->
+					<ul>
+						<li><a href="#">WHO ARE WE?</a></li>
+						<li><a href="#">CAREERS</a></li>
+						<li><a href="#">AUTHENTICITY</a></li>
+						<li><a href="#">PRESS</a></li>
+						<li><a href="#">TESTIMONIALS</a></li>
+					</ul>
+				</div>
+				<div class="col-xl-3 col-sm-4 col-6">
+					<h3>Category</h3>
+					<ul>
+						<li><a href="#">Fruits and Vegetables</a></li>
+						<li><a href="#">Foodgrains, Oil & Masala</a></li>
+						<li><a href="#">Eggs, Meat and Fish</a></li>
+						<li><a href="#">Personal Care</a></li>
+						<li><a href="#">Beverages</a></li>
+					</ul>
+				</div>
+				<div class="col-xl-3 col-sm-4 col-6">
+					<h3>HELP</h3>
+					<ul>
+						<li><a href="#">CONTACT US</a></li>
+						<li><a href="#">FREQUENTLY ASKED QUESTIONS</a></li>
+						<li><a href="#">CANCELLATION & RETURN</a></li>
+						<li><a href="#">SHIPPING & DELIVERY</a></li>
+					</ul>
+				</div>
+				
+				<div class="col-xl-3 col-sm-8">
+					<h3>Contact Us</h3>
+					<p><b>Email</b><br> info@yoursite.com</p>
+					<p><b>Call Support</b><br> +91 0123456789</p>
+					<p><b>Location</b><br> 59B, Near Jamia Cooperative Bank, New Delhi, Pin: 110025</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- //footer part -->
+	
+	<!-- shpping part -->
+	<section class="shipping-pt">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-9">
+					<div class="row">
+						<div class="col-xl-4 col-sm-4">
+							<div class="shipping-sab">
+							   <div class="item">
+								  <img src="assets/images/tag-1.png">
+							   </div>
+							   <div class="item">
+								  <h4>1500+ Brands</h4>
+								  <p>Well Curated 3 Lakhs + Products</p>
+							   </div>
+							</div>
+						 </div>
+						 <div class="col-xl-4 col-sm-4">
+							<div class="shipping-sab">
+							   <div class="item">
+								  <img src="assets/images/tag-2.png">
+							   </div>
+							   <div class="item">
+								  <h4>FREE SHIPPING</h4>
+								  <p>For Orders Above INR 500</p>
+							   </div>
+							</div>
+						 </div>
+						 <div class="col-xl-4 col-sm-4">
+							<div class="shipping-sab">
+							   <div class="item">
+								  <img src="assets/images/tag-3.png">
+							   </div>
+							   <div class="item">
+								  <h4>GENUINE PRODUCTS</h4>
+								  <p>Sourced Directly From Brands</p>
+							   </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3">
+					<div class="sm-social">
+						<h3>SHOW US SOME LOVE ON SOCIAL MEDIA</h3>
+						<div class="social-ic">
+						   <ul>
+							  <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a></li>
+							  <li><a href="https://www.facebook.com/"><i class="fab fa-twitter-square"></i></a></li>
+							  <li><a href=""><i class="fab fa-instagram"></i></a></li>
+							  <li><a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a></li>
+							  <li><a href=""><i class="fab fa-pinterest"></i></a></li>
+						   </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- //shpping part -->
+	
+	<!-- copyright -->
+	<section class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12 text-center">
+					<ul>
+						<li><a href="#">Terms & Conditions</a></li>
+						<li><a href="#">Shipping Policy</a></li>
+						<li><a href="#">Cancellation Policy</a></li>
+						<li><a href="#">Privacy Policy</a></li>
+					</ul>
+					<p>© 2020 Grocery Shop. All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- //copyright -->
+	
+	
+	<a href="#" id="scroll" style="display: none;"><span><i class="ti-arrow-up"></i></span></a>
+</main>
+
+
+<!-- Login Modal -->
+<div class="login">
+	<div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-body">
+			<div class="col-12 mb-4 text-center">
+				<h5>SIGN IN</h5>
+				<p>Not Registered? Sign Up</p>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="login-main">
+				<div class="login-item text-center">
+					<form>
+						<input type="email" class="form-control" placeholder="EMAIL">
+						<input type="password" class="form-control" placeholder="PASSWORD">
+						<p class="text-right">Forgot Password?</p>
+						<button type="submit" class="log-btn mt-2">SIGN IN</button>
+					</form>
+				</div>
+				<div class="login-item text-center">
+					<form>
+						<input type="text" class="form-control" placeholder="FIRST NAME">
+						<input type="text" class="form-control" placeholder="LAST NAME">
+						<input type="email" class="form-control" placeholder="EMAIL">
+						<input type="password" class="form-control" placeholder="PASSWORD">
+						<input type="text" class="form-control" placeholder="MOBILE">
+						<div>
+							<div class="custom-control custom-radio custom-control-inline">
+							  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
+							  <label class="custom-control-label" for="customRadioInline1">MALE</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+							  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+							  <label class="custom-control-label" for="customRadioInline2">FEMALE</label>
+							</div>
+						</div>
+						<small>By Signing up you will agree Privacy Policy and Terms of Conditions.</small>
+						<button type="submit" class="log-btn mt-3">SIGN UP</button>
+					</form>
+				</div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+
+<!-- Cart Modal -->
+<div class="cart">
+	<div class="modal right fade" id="cartpanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <i class="ti-angle-left"></i>
+					</button>
+					Shopping Cart(2)	
+				</div>
+                <div class="modal-body">
+                    <div class="cart-item-main">
+						<div class="cart-view">
+							<div><img src="assets/images/product/Bhindi.jpg" alt="nail" width="100px"></div>
+							<div>Bhindi (Ladies Finger, Okra)</div>
+							<div><a href="#"><i class="ti-trash"></i></a></div>
+						</div>
+						<article class="row">
+							<div class="col-5">
+								<div class="qty">
+									<span title="Delete Product" class="minus" id="minus204"><i class="ti-minus"></i></span>
+									<input type="number" class="count" id="count204" name="qty" value="1" disabled="">
+									<span title="Add Product" class="plus" id="plus204"><i class="ti-plus"></i></span>
+								</div>
+								<script>
+									$(document).ready(function(){
+										$('#count'+204).prop('disabled', true);
+										$(document).on('click','#plus'+204,function(){
+											$('#count'+204).val(parseInt($('#count'+204).val()) + 1 );
+											updtqty($('#count'+204).val(),'204');
+										});
+										$(document).on('click','#minus'+204,function(){
+											$('#count'+204).val(parseInt($('#count'+204).val()) - 1 );
+											updtqty($('#count'+204).val(),'204');
+												if ($('#count'+204).val() == 0) {
+													$('#count'+204).val(1);
+												}
+											});
+									});
+								</script>
+							</div>
+							<div class="col-7">
+								<h6><span>₹699</span> ₹599</h6>
+							</div>
+						</article>
+					</div>
+					<div class="cart-item-main">
+						<div class="cart-view">
+							<div><img src="assets/images/product/chicken-curry-cut-without-skin.jpg" alt="nail" width="100px"></div>
+							<div>Chicken - Curry Cut Without Skin</div>
+							<div><a href="#"><i class="ti-trash"></i></a></div>
+						</div>
+						<article class="row">
+							<div class="col-5">
+								<div class="qty">
+									<span title="Delete Product" class="minus" id="minus205"><i class="ti-minus"></i></span>
+									<input type="number" class="count" id="count205" name="qty" value="1" disabled="">
+									<span title="Add Product" class="plus" id="plus205"><i class="ti-plus"></i></span>
+								</div>
+								<script>
+									$(document).ready(function(){
+										$('#count'+205).prop('disabled', true);
+										$(document).on('click','#plus'+205,function(){
+											$('#count'+205).val(parseInt($('#count'+205).val()) + 1 );
+											updtqty($('#count'+205).val(),'205');
+										});
+										$(document).on('click','#minus'+205,function(){
+											$('#count'+205).val(parseInt($('#count'+205).val()) - 1 );
+											updtqty($('#count'+205).val(),'205');
+												if ($('#count'+205).val() == 0) {
+													$('#count'+205).val(1);
+												}
+											});
+									});
+								</script>
+							</div>
+							<div class="col-7">
+								<h6><span>₹699</span> ₹599</h6>
+							</div>
+						</article>
+					</div>
+					
+					<!-- cart payment details -->
+					<div class="cart-payment">
+						<div class="heading text-center">Payment Details</div>
+						<table class="table">
+							<tr>
+								<td>Bag Total</td>
+								<td class="text-right">₹1198</td>
+							</tr>
+							<tr>
+								<td>Sub Total</td>
+								<td class="text-right">₹1198</td>
+							</tr>
+							<tr>
+								<td>Shipping Charge</td>
+								<td class="text-right">Free</td>
+							</tr>
+							<tr>
+								<td>Grand Total</td>
+								<td class="text-right"><b>₹1198</b></td>
+							</tr>
+						</table>
+						<p>Earn <span>2324</span> Reward Points on this order</p>
+					</div>
+					<!-- //end cart payment details -->
+                </div>
+				<div class="modal-footer">
+					<div class="item">
+						Grand Total:
+						<span>₹ 2324</span>
+					</div>
+					<div class="item">
+						<a href="checkout.html">PROCEED <i class="ti-angle-right"></i></a>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- onload modal 
+<div class="login">
+	<div class="modal fade" id="homemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-body">
+			<div class="col-12 p-0 text-center">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+				<img src="assets/images/adver.jpg" alt="" class="img-fluid">
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div> -->
+
+
+
+<script src="assets/js/jquery.mobile-menu.min.js"></script>    
+<script  src="assets/js/scripts.js"></script>
+</body>
+</html>
