@@ -35,6 +35,7 @@
           <th width="80px;">Discount %</th> -->
           <th>WB Price</th>
           <th>UP Price</th>
+          <th>Order</th>
           <?php if(empty($this->session->userdata("user_brand_id"))){?>
           <th>Action</th>
           <?php } ?>
@@ -52,7 +53,9 @@
  <!-- <td><input type="text"  class="form-control" name="price[]" ng-model="row.price" ng-change="getDiscountPercent(row)"></td> -->
  <td><input type="text" class="form-control" name="wb_price[]" ng-model="row.wb_price"></td>
  <td><input type="text" class="form-control" name="up_price[]" ng-model="row.up_price"></td>
-<?php if(empty($this->session->userdata("user_brand_id"))){?>
+ <td>{{row.order}}</td>
+
+ <?php if(empty($this->session->userdata("user_brand_id"))){?>
  <td>
   <a onclick="return confirm('Do You Really Want To Delete This Variant?');" href="<?php echo base_url("admin/product_option/delete_value/");?>{{row.pr_value_id}}"><span class="glyphicon glyphicon-remove"></span></a>
  </td>
@@ -115,6 +118,13 @@
     <label class="control-label col-sm-3" for="email">UP Price :</label>
     <div class="col-sm-9">
       <input type="number" required class="form-control" id="up_price" name="up_price" ng-model="newRow.up_price">
+    </div>
+  </div>
+
+   <div class="form-group">
+    <label class="control-label col-sm-3" for="email">Order :</label>
+    <div class="col-sm-9">
+      <input type="number" required class="form-control" id="order" name="order" ng-model="newRow.order">
     </div>
   </div>
 

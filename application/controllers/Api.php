@@ -379,15 +379,36 @@ class Api extends CI_Controller{
 
 
 	function addToCart($source="web"){
-		$product_id=$this->input->post("product_id");
-		$variant_id=$this->input->post("variant_id");
-		$unit = $this->input->post("unit") ?: "TON";
-		$qty=$this->input->post("qty");
-		if(!$this->input->post("operator")){
+		// Get product_id from multiple possible sources (post, get, or JSON)
+		$product_id = $this->input->post("product_id");
+		if(empty($product_id)) {
+			$product_id = $this->input->get("product_id");
+		}
+		
+		// Try to get variant_id from multiple sources
+		$variant_id = $this->input->post("variant_id");
+		if(empty($variant_id)) {
+			$variant_id = $this->input->get("variant_id");
+		}
+		
+		// Try to parse JSON input if regular methods fail
+		if(empty($product_id) || empty($variant_id)) {
+			$json_input = json_decode(file_get_contents('php://input'), true);
+			if(!empty($json_input) && isset($json_input['product_id'])) {
+				$product_id = $json_input['product_id'];
+				$variant_id = isset($json_input['variant_id']) ? $json_input['variant_id'] : $variant_id;
+			}
+		}
+		
+		$unit = $this->input->post("unit") ?: $this->input->get("unit") ?: "TON";
+		$qty = $this->input->post("qty") ?: $this->input->get("qty") ?: 1;
+		
+		if(!$this->input->post("operator") && !$this->input->get("operator")){
 			$operator="+";
 		}else{
-			$operator=$this->input->post("operator");
+			$operator=$this->input->post("operator") ?: $this->input->get("operator");
 		}
+		
 		$this->load->model("Api_model","am");
 		if($source=="web"){
 			$this->load->library("session");
@@ -421,13 +442,55 @@ class Api extends CI_Controller{
 			}
 		}*/
 		
+		// Log input data for debugging
+		log_message('debug', 'addToCart input: ' . json_encode([
+			'source' => $source,
+			'product_id' => $product_id,
+			'variant_id' => $variant_id,
+			'unit' => $unit,
+			'qty' => $qty,
+			'post_data' => $_POST,
+			'get_data' => $_GET
+		]));
+		
+		// Validate input parameters - with extra helpful info for debugging
+		if(empty($product_id)) {
+			echo json_encode(array(
+				"status" => "failed",
+				"status_code" => 0,
+				"type" => 1,
+				"msg" => "Product ID is required",
+				"debug_info" => "Please ensure you're passing product_id in the request"
+			));
+			return;
+		}
+		
+		if(empty($variant_id)) {
+			echo json_encode(array(
+				"status" => "failed",
+				"status_code" => 0,
+				"type" => 1,
+				"msg" => "Variant ID is required",
+				"debug_info" => "Please ensure you're passing variant_id in the request"
+			));
+			return;
+		}
+		
 		$cart_id=$this->am->addToCart($product_id,$variant_id,$qty,$user_id,$operator,$unit);
 		if($cart_id){
 			$count=$this->am->cartDetailsDataCount($cart_id);
 			$list=$this->am->cartDetailsData($user_id);
 			echo json_encode(array("status"=>"success","status_code"=>1,"msg"=>"Product Added To Cart","item_count"=>$count,"list"=>$list));
 		}else{
-			echo json_encode(array("status"=>"failed","status_code"=>0,"type"=>1,"msg"=>"Unable To Add Product"));
+			// Get detailed error info from log
+			$error_msg = "Unable To Add Product";
+			
+			// Check for specific error conditions
+			if($this->db->error()['code']) {
+				$error_msg .= ": " . $this->db->error()['message'];
+			}
+			
+			echo json_encode(array("status"=>"failed","status_code"=>0,"type"=>1,"msg"=>$error_msg));
 		}
 
 	}
@@ -492,7 +555,7 @@ class Api extends CI_Controller{
 				$disc=($list["old_price"]-$list["wb_price"])*100/$list["old_price"];
 			}
 
-			$array[]=array("option_value_row_id"=>$list["option_value_row_id"],"option_id"=>$list["option_id"],"value_name"=>$list["value_name"],"pr_value_id"=>$list["pr_value_id"],"disc"=>$disc,"wb_price"=>$list['wb_price'],"up_price"=>$list['up_price'],"base"=>$list["base"],"stock"=>$list["stock"]);
+			$array[]=array("option_value_row_id"=>$list["option_value_row_id"],"option_id"=>$list["option_id"],"value_name"=>$list["value_name"],"pr_value_id"=>$list["pr_value_id"],"disc"=>$disc,"wb_price"=>$list['wb_price'],"up_price"=>$list['up_price'],"base"=>$list["base"],"stock"=>$list["stock"],"order"=>$list["order"]);
 		}
 
 		echo json_encode(array("status"=>"success","list"=>$array));	

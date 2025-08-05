@@ -116,7 +116,7 @@ class Api_model extends CI_Model{
 
     function product_list($args=array()){
        /* $this->db->select("cd.category_name,bd.name as brand_name,cd.category_id,pov.price,pov.old_price,p.slug_name,p.id as product_id,p.stock,p.show_unit_in,p.base_unit_value_stock,ov.base_unit_value,pov.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,pov.disc");*/
-       $this->db->select("cd.category_name,bd.name as brand_name,cd.category_id,p.wb_price,p.up_price,pov.wb_price as variant_price,pov.old_price as variant_old_price,p.slug_name,p.id as product_id,p.stock,p.show_unit_in,p.base_unit_value_stock,ov.base_unit_value,pov.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,pov.disc");
+       $this->db->select("cd.category_name,bd.name as brand_name,cd.category_id,p.wb_price,p.up_price,p.wb_old_price,p.up_old_price,pov.wb_price as variant_price,pov.old_price as variant_old_price,p.slug_name,p.id as product_id,p.stock,p.show_unit_in,p.base_unit_value_stock,ov.base_unit_value,pov.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,pov.disc");
         $this->db->from("product p");
         $this->db->join("product_description pd","pd.product_id=p.id","inner");
          $this->db->join("category_description cd","cd.category_id=p.category_id and cd.language_id=2","inner");
@@ -224,6 +224,7 @@ class Api_model extends CI_Model{
                     }
                     
                 }
+                // Ensure order is included
                 $i++;
             }
 
@@ -235,10 +236,11 @@ class Api_model extends CI_Model{
     }
 
     function product_options($product_id){
-        $this->db->select("ov.value_name as option_name,pov.id,pov.wb_price,pov.old_price,pov.disc,pov.stock,ov.base_unit_value");
+        $this->db->select("ov.value_name as option_name,pov.id,pov.wb_price,pov.old_price,pov.disc,pov.stock,ov.base_unit_value,ov.order");
         $this->db->from("product_option_value pov");
         $this->db->join("option_value ov","ov.option_value_id=pov.value_id","inner");
         $this->db->where("pov.product_id",$product_id);
+        $this->db->order_by("ov.order", "ASC"); // Order by the new order field
 
         return $this->db->get()->result_array();
         //echo $this->db->last_query(); exit();
@@ -358,6 +360,16 @@ class Api_model extends CI_Model{
         $this->db->where("pov.id",$option_id);
         $data=$this->db->get()->row_array();
         //echo $this->db->last_query(); exit();
+        
+        // Return default values if no data found to prevent null errors
+        if(empty($data)) {
+            return array(
+                'base_price' => 0,
+                'base_old_price' => 0,
+                'product_id' => 0
+            );
+        }
+        
         return $data;
     }
 
@@ -394,11 +406,11 @@ class Api_model extends CI_Model{
             $option_details=$this->product_option_details($variant_id);
             //follow this part and apply to other same part ///
             if($unit=="KG"){
-               $unit_price=$option_details['base_price']+$option_details["price"]/1000;
-               $old_price=$option_details['base_old_price']+$option_details["old_price"]/1000; 
+               $unit_price=$option_details['base_price']+$option_details["base_price"]/1000;
+               $old_price=$option_details['base_old_price']+$option_details["base_old_price"]/1000; 
             }else{
-               $unit_price=$option_details['base_price']+$option_details["price"]; 
-               $old_price=$option_details['base_old_price']+$option_details["old_price"];
+               $unit_price=$option_details['base_price']+$option_details["base_price"]; 
+               $old_price=$option_details['base_old_price']+$option_details["base_old_price"];
             }
             //////
             $total_old_price=$old_price*$qty;
@@ -413,11 +425,11 @@ class Api_model extends CI_Model{
                 //echo "exist "; exit();
                 $option_details=$this->product_option_details($variant_id);
                 if($unit=="KG"){
-                   $unit_price=$option_details['base_price']+$option_details["price"]/1000;
-                   $old_price=$option_details['base_old_price']+$option_details["old_price"]/1000; 
+                   $unit_price=$option_details['base_price']+$option_details["base_price"]/1000;
+                   $old_price=$option_details['base_old_price']+$option_details["base_old_price"]/1000; 
                 }else{
-                   $unit_price=$option_details['base_price']+$option_details["price"]; 
-                   $old_price=$option_details['base_old_price']+$option_details["old_price"];
+                   $unit_price=$option_details['base_price']+$option_details["base_price"];
+                   $old_price=$option_details['base_old_price']+$option_details["base_old_price"];
                 }
                 if ($operator === "=") {
                     $this->db->set("count", $qty);
@@ -451,9 +463,12 @@ class Api_model extends CI_Model{
                 }
 
             }else{
-                 //echo "not exist ";
-                 echo $option_details;
                 $option_details=$this->product_option_details($variant_id);
+                
+                // Initialize default values to avoid undefined variable errors
+                $unit_price = 0;
+                $old_price = 0;
+                
                 if($unit=="KG"){
                    $unit_price=$option_details['base_price']+$option_details["base_price"]/1000;
                    $old_price=$option_details['base_old_price']+$option_details["base_old_price"]/1000; 
@@ -461,17 +476,51 @@ class Api_model extends CI_Model{
                    $unit_price=$option_details['base_price']+$option_details["base_price"]; 
                    $old_price=$option_details['base_old_price']+$option_details["base_old_price"];
                 }
+                
                 $total_price=$unit_price*$qty;
                 $total_old_price=$old_price*$qty;
                 $id=$cart_details->order_id;
-            //print_r($option_details); exit();
-                $this->db->insert("order_detail",array("order_id"=>$id,"product_id"=>$product_id,"count"=>$qty,"options"=>$variant_id,"total_price"=> $total_price,"unit_price"=>$unit_price,"old_price"=>$old_price,"total_old_price"=>$total_old_price,"unit"=>strtoupper($unit)));
+                
+                // Ensure product_id is not null (use from option_details if available)
+                if(empty($product_id) && !empty($option_details['product_id'])) {
+                    $product_id = $option_details['product_id'];
+                }
+                
+                // Set default values for required fields
+                $qty = $qty ?: 1;
+                
+                // Only insert if we have a valid product_id
+                if(!empty($product_id)) {
+                    $this->db->insert("order_detail",array(
+                        "order_id" => $id,
+                        "product_id" => $product_id,
+                        "count" => $qty,
+                        "options" => $variant_id,
+                        "total_price" => $total_price,
+                        "unit_price" => $unit_price,
+                        "old_price" => $old_price,
+                        "total_old_price" => $total_old_price,
+                        "unit" => strtoupper($unit)
+                    ));
+                } else {
+                    log_message('error', 'Cannot add to cart: product_id is null');
+                    return false;
+                }
             }
 
         }
         $this->update_order_total($id);
         //$this->stockUpdate($product_id,$variant_id,$qty,$operator);
         if($this->db->trans_status()===FALSE){
+            // Log detailed error information
+            $error = $this->db->error();
+            log_message('error', 'addToCart transaction failed: ' . json_encode([
+                'product_id' => $product_id,
+                'variant_id' => $variant_id,
+                'qty' => $qty,
+                'user_id' => $user_id,
+                'error' => $error
+            ]));
             $this->db->trans_rollback();
             return false;
         }else{
@@ -625,11 +674,12 @@ class Api_model extends CI_Model{
 
 
     function productOptions($product_id){
-        $this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id');
+        $this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, option_value.order');
                 $this->db->where('option_id', 25);
                 $this->db->where('product_id', $product_id);
                 $this->db->join('product_option_value', 'product_option_value.value_id = option_value.option_value_id');
                 $this->db->where('language_id', 2);
+                $this->db->order_by('option_value.order', 'ASC'); // Order by the new order field
                 $query = $this->db->get("option_value");
                 return $query->result_array();
     }

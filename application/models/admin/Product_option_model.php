@@ -81,7 +81,7 @@ function product_option_value_exist($product_id){
 	
  }
  
- public function add_new_value($data){
+  public function add_new_value($data){
   $base=0;
   if($this->product_option_value_exist($data['product_id'])==0){
     $base=1;
@@ -93,9 +93,7 @@ function product_option_value_exist($product_id){
     return false;
   }
   return $this->db->query("INSERT INTO product_option_value SET product_id = '" . $data['product_id'] . "',  value_id = '" . $data['value_id'] . "', old_price = '" . $data['old_price'] . "', wb_price = '" . $data['wb_price'] . "', up_price = '" . $data['up_price'] . "', base = '" . $base . "',  stock = '" . $data['stock'] . "',  disc = '" . $data['disc'] . "'");
- }
-
-	
+ }	
  public function value_update($data){  
   $this->db->trans_begin();
   for ($i = 0; $i < count($data['pr_value_id']); $i++) {
@@ -112,7 +110,7 @@ function product_option_value_exist($product_id){
         "up_price"=>$data['up_price'][$i],
         "base"=>$base,
         "stock"=>$data['stock'][$i],
-        "disc"=>$data['disc'][$i]
+        "disc"=>$data['disc'][$i],
       ),array("id"=>$data['pr_value_id'][$i])
     );
 
@@ -143,12 +141,12 @@ function product_option_value_exist($product_id){
  
  }
 	function get_values($option_id, $product_id){
-		$this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, product_option_value.wb_price, product_option_value.up_price');
+		$this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, product_option_value.wb_price, product_option_value.up_price, option_value.order');
 		$this->db->where('option_id', $option_id);
 		$this->db->where('product_id', $product_id);
 		$this->db->join('product_option_value', 'product_option_value.value_id = option_value.option_value_id');
 		$this->db->where('language_id', 2);
-		$this->db->order_by('option_value.value_name', 'ASC'); // Sort by size name ascending
+		$this->db->order_by('option_value.order', 'ASC'); // Sort by order field
 		$query = $this->db->get("option_value");
 		return $query->result();
 		//echo $this->db->last_query(); exit();

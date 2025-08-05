@@ -103,7 +103,7 @@ function get_option_list(){
 
 
 			/*$main_update = $this->db->query("INSERT INTO option_value SET option_value_id = '".(int)$last_id."', option_id = '" . (int)$value['option_id'] . "', language_id = '" . (int)$language_id . "', value_name = '" . $value['value_name'] . "'");*/
-			$this->db->insert("option_value",array("option_value_id"=>$last_id,"option_id"=>$value['option_id'],"language_id"=>$language_id,"value_name"=>$value_name,"unit"=>$value['unit'],"base_unit_value"=>$base_unit_value));
+			$this->db->insert("option_value",array("option_value_id"=>$last_id,"option_id"=>$value['option_id'],"language_id"=>$language_id,"value_name"=>$value_name,"unit"=>$value['unit'],"base_unit_value"=>$base_unit_value,"order"=>$value['order']));
 		}
 
 		if($this->db->trans_status()===FALSE){
@@ -127,7 +127,7 @@ function get_option_list(){
 			$base_unit_value=$data["unit_value"][$i]*$unit_det->base;
 			$value_name=$data["unit_value"][$i]." ".$unit_det->name;
 
-			$this->db->update("option_value",array("value_name"=>$value_name,"unit_value"=>$data["unit_value"][$i],"unit"=>$data["unit"][$i],"base_unit_value"=>$base_unit_value),array("option_value_row_id"=>$data['option_value_row_id'][$i]),1);
+			$this->db->update("option_value",array("value_name"=>$value_name,"order"=>$data["order"][$i],"unit_value"=>$data["unit_value"][$i],"unit"=>$data["unit"][$i],"base_unit_value"=>$base_unit_value),array("option_value_row_id"=>$data['option_value_row_id'][$i]),1);
 	 } 
 
 	 if($this->db->trans_status()===FALSE){
