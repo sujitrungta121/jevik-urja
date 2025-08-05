@@ -1,4 +1,4 @@
-  <?php $this->load->view('admin/header'); ?>
+<?php $this->load->view('admin/header'); ?>
 <div id="page-wrapper" ng-app="myApp" ng-controller="Ctrl">
 
             <div class="container-fluid">
@@ -49,30 +49,15 @@
   {{row.value_name}}
   <input type="hidden" class="form-control"  value="{{row.pr_value_id}}" name="pr_value_id[]">  
  </td>
- <!-- <td>
-  <input type="radio" name="default" value="{{row.pr_value_id}}" ng-checked="row.base=='1'" >
- 
- 		<select name="operation[]" class="form-control" style="display: none;">
-		<option value="+">+</option>
-		</select>
-</td> -->
-  <!-- <td>
-    <input ng-readonly="shared_stock_slected_option_id>0" type="text" class="form-control"  name="stock[]" ng-model="row.stock"  >
-  </td> -->
-  <!-- <td><input type="text" class="form-control"  name="old_price[]" ng-model="row.old_price" ng-change="getDiscountPercent2(row)" ></td>
-  <td><input type="text" class="form-control" name="disc[]" ng-change="getNewPrice(row)"   ng-model="row.disc" ng-value="0"></td> -->
-  <td><input type="text"  class="form-control" name="price[]" ng-model="row.price" ng-change="getDiscountPercent(row)"></td>
+ <!-- <td><input type="text"  class="form-control" name="price[]" ng-model="row.price" ng-change="getDiscountPercent(row)"></td> -->
+ <td><input type="text" class="form-control" name="wb_price[]" ng-model="row.wb_price"></td>
+ <td><input type="text" class="form-control" name="up_price[]" ng-model="row.up_price"></td>
 <?php if(empty($this->session->userdata("user_brand_id"))){?>
  <td>
-	<!-- <a href="<?php echo $this->config->item('admin_url'); ?>product_option/delete_value/<?php echo $value->pr_value_id; ?>"><span class="glyphicon glyphicon-remove"></span></a> -->
-
   <a onclick="return confirm('Do You Really Want To Delete This Variant?');" href="<?php echo base_url("admin/product_option/delete_value/");?>{{row.pr_value_id}}"><span class="glyphicon glyphicon-remove"></span></a>
-
-
  </td>
 <?php } ?>
-
- </tr>
+</tr>
  <?php // } ?>
  <tr>
  <td colspan="7">
@@ -120,32 +105,18 @@
         </select>
     </div>
   </div>
-  <!-- <div class="form-group">
-    <label class="control-label col-sm-3" for="email">Stock :</label>
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="email">WB Price :</label>
     <div class="col-sm-9">
-      <input type="number" class="form-control" id="stock" name="stock" value="0" >
+      <input type="number" required class="form-control" id="wb_price" name="wb_price" ng-model="newRow.wb_price">
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-3" for="email">Addon Old Price :</label>
+    <label class="control-label col-sm-3" for="email">UP Price :</label>
     <div class="col-sm-9">
-      <input type="text" required class="form-control" id="old_price" name="old_price" ng-model="newRow.old_price" ng-change="getDiscountPercent(newRow)" >
+      <input type="number" required class="form-control" id="up_price" name="up_price" ng-model="newRow.up_price">
     </div>
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-3" for="email">Discount % :</label>
-    <div class="col-sm-9">
-      <input type="number" required class="form-control" id="disc" name="disc" ng-model="newRow.disc" ng-change="getNewPrice(newRow)" >
-    </div>
-  </div> -->
-  <div class="form-group">
-    <label class="control-label col-sm-3" for="email">Addon Price :</label>
-    <div class="col-sm-9">
-      <input type="text" required class="form-control" id="price" name="price" ng-model="newRow.price" ng-change="getDiscountPercent(newRow)">
-    </div>
-  </div>
-
-
 
       </div>
       <div class="modal-footer">
@@ -191,7 +162,8 @@
     $scope.newRow = {
       old_price : 0,
       disc : 0,
-      price : 0
+      wb_price: 0,
+      up_price: 0
     }
    
     $scope.product_details=[];
@@ -216,25 +188,25 @@
      $scope.loadProductOptions();
 
     $scope.calc=function(row){
-      var diff_amt=row.old_price-row.price;
+      var diff_amt=row.old_price-row.wb_price;
       var percent=diff_amt*100/row.old_price;
       row.disc=percent;
     }
 
     $scope.getNewPrice=function(row){
-        row.price= Math.round(angular.copy(row.old_price-(row.old_price*row.disc/100)));
+        row.wb_price= Math.round(angular.copy(row.old_price-(row.old_price*row.disc/100)));
     }
 
     $scope.getDiscountPercent=function(row){
       console.log("hello");
-        var disc= Math.round(angular.copy((row.old_price-row.price)*100/row.old_price));
+        var disc= Math.round(angular.copy((row.old_price-row.wb_price)*100/row.old_price));
         console.log("disc : "+disc);
         row.disc=disc;
     }
 
     $scope.getDiscountPercent2=function(row){
       console.log("hello");
-      var disc= Math.round(angular.copy((row.old_price-row.price)*100/row.old_price));
+      var disc= Math.round(angular.copy((row.old_price-row.wb_price)*100/row.old_price));
         console.log("disc : "+disc);
         row.disc=disc;
        

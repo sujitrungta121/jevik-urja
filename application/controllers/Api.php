@@ -255,7 +255,7 @@ class Api extends CI_Controller{
         $config = [
             'protocol'      => 'smtp',
             'smtp_host'     => 'mail.jevikurja.com',
-            'smtp_user'     => 'noreply@jevikurja.com',
+            'smtp_user'     => 'sales@jevikurja.com',
             'smtp_pass'     => 'NorT4521*',
             'smtp_port'     => 25,
             'smtp_crypto'   => '',       // No SSL or TLS on port 25
@@ -274,7 +274,7 @@ class Api extends CI_Controller{
 
         $this->email->initialize($config);
 
-        $this->email->from('noreply@jevikurja.com', 'Jevikurja');
+        $this->email->from('sales@jevikurja.com', 'Jevikurja');
         $this->email->to('debasish.1911@mailinator.com'); // Replace with your recipient
         $this->email->subject('Test Email via SMTP - Port 25');
         $this->email->message('<p>This is a <strong>test email</strong> sent using SMTP on port 25.</p>');
@@ -489,10 +489,10 @@ class Api extends CI_Controller{
 			if($list["old_price"]==0){
 				$disc=0;
 			}else{
-				$disc=($list["old_price"]-$list["price"])*100/$list["old_price"];
+				$disc=($list["old_price"]-$list["wb_price"])*100/$list["old_price"];
 			}
-			
-			$array[]=array("option_value_row_id"=>$list["option_value_row_id"],"option_id"=>$list["option_id"],"value_name"=>$list["value_name"],"old_price"=>$list["old_price"],"price"=>$list["price"],"pr_value_id"=>$list["pr_value_id"],"disc"=>$disc,"base"=>$list["base"],"stock"=>$list["stock"]);
+
+			$array[]=array("option_value_row_id"=>$list["option_value_row_id"],"option_id"=>$list["option_id"],"value_name"=>$list["value_name"],"pr_value_id"=>$list["pr_value_id"],"disc"=>$disc,"wb_price"=>$list['wb_price'],"up_price"=>$list['up_price'],"base"=>$list["base"],"stock"=>$list["stock"]);
 		}
 
 		echo json_encode(array("status"=>"success","list"=>$array));	

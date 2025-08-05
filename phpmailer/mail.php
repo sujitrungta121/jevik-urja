@@ -19,10 +19,10 @@ $mail->Host = "mail.jevikurja.com";  /*SMTP server*/
 $mail->SMTPAuth = true;
 //$mail->SMTPSecure = "ssl";
 $mail->Port = 25;
-$mail->Username = "noreply@jevikurja.com";  /*Username*/
+$mail->Username = "sales@jevikurja.com";  /*Username*/
 $mail->Password = "NorT4521*";    /**Password**/
 
-$mail->From = "noreply@jevikurja.com";    /*From address required*/
+$mail->From = "sales@jevikurja.com";    /*From address required*/
 $mail->FromName = "Jevik Urja";
 $mail->AddAddress($receiver);
 //$mail->AddReplyTo("mail@mail.com");

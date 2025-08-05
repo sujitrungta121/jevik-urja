@@ -62,6 +62,7 @@ $route['order-success/(:any)']="Home/order_succcess/$1";
 $route['track-order/(:any)']="Home/track_order/$1";
 $route['partials/login-form']="Home/login_form_partials";
 $route['partials/forgot-pass/(:any)']="Home/forgot_pass/$1";
+// Handle case sensitivity for product controller
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

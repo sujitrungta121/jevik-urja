@@ -88,12 +88,12 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 defined('SITE_TITLE')  OR define('SITE_TITLE', 'JEVIK URJA');
 //defined('SITE_OWNERS_DEFAULT_MOBILE_NO')  OR define('SITE_OWNERS_DEFAULT_MOBILE_NO', '919007005138');
 defined('SITE_OWNERS_DEFAULT_MOBILE_NO')  OR define('SITE_OWNERS_DEFAULT_MOBILE_NO', '7003782339');
-defined('SITE_OWNERS_DEFAULT_EMAIL_ID')  OR define('SITE_OWNERS_DEFAULT_EMAIL_ID', 'subodhsonthalia@gmail.com');
+defined('SITE_OWNERS_DEFAULT_EMAIL_ID')  OR define('SITE_OWNERS_DEFAULT_EMAIL_ID', 'sales@jevikurja.com');
 defined('SMTP_HOST')  OR define('SMTP_HOST', 'ssl://mail5015.site4now.net');
 defined('SMTP_PORT')  OR define('SMTP_PORT', '465');
-defined('SMTP_USER')  OR define('SMTP_USER', 'noreply@jevikurja.com');
+defined('SMTP_USER')  OR define('SMTP_USER', 'sales@jevikurja.com');
 defined('SMTP_PASSWORD')  OR define('SMTP_PASSWORD', 'NorT4521*');
-defined('SMTP_SENDER_ID')  OR define('SMTP_SENDER_ID', 'noreply@jevikurja.com');
+defined('SMTP_SENDER_ID')  OR define('SMTP_SENDER_ID', 'sales@jevikurja.com');
 
 // Path to Composer's vendor/ directory, it should end with a trailing slash.
 defined('VENDORPATH') OR define('VENDORPATH', rtrim(str_replace('\\', '/', realpath(dirname(APPPATH.'vendor/autoload.php'))), '/').'/');

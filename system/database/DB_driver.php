@@ -35,6 +35,9 @@
  * @since	Version 1.0.0
  * @filesource
  */
+
+
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -51,6 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		https://codeigniter.com/user_guide/database/
  */
 abstract class CI_DB_driver {
+
+	public $failover = array();
 
 	/**
 	 * Data Source Name / Connect string

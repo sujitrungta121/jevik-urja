@@ -189,9 +189,9 @@
   </div>
 
   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Image *</label>
+    <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
     <div class="col-sm-10">
-      <input name="image" type="file"  class="form-control" id="image" required >
+      <input name="image" type="file"  class="form-control" id="image">
     </div>
   </div>
 

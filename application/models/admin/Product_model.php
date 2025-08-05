@@ -17,7 +17,7 @@ function get_products(){
 			ORDER BY product.id');
         return $query->result();*/
 
-        $this->db->select("p.*,p.wb_price as wb_price,p.wb_old_price as wb_old_price, p.up_price as up_price,p.up_old_price as up_old_price, pd.*,IFNULL(pov.price,'') as price,IFNULL(pov.old_price,'') as old_price,cd.category_name,bd.name as brand_name");
+        $this->db->select("p.*,p.wb_price as wb_price,p.wb_old_price as wb_old_price, p.up_price as up_price,p.up_old_price as up_old_price, pd.*,IFNULL(pov.wb_price,'') as price,IFNULL(pov.old_price,'') as old_price,cd.category_name,bd.name as brand_name");
         $this->db->from("product p");
         $this->db->join("product_description pd","p.id=pd.product_id","left");
         $this->db->join("brand_description bd","bd.brand_id=p.brand_id","left");

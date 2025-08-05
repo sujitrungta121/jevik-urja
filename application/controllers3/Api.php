@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Api extends CI_Controller{
-
+    public $db;
+	public $am;
 	public function __construct(){
         parent::__construct(); 
         $this->load->library("session");
@@ -187,7 +188,7 @@ class Api extends CI_Controller{
         $config = [
             'protocol'      => 'smtp',
             'smtp_host'     => 'mail.jevikurja.com',
-            'smtp_user'     => 'noreply@jevikurja.com',
+            'smtp_user'     => 'sales@jevikurja.com',
             'smtp_pass'     => 'NorT4521*',
             'smtp_port'     => 25,
             'smtp_crypto'   => '',       // No SSL or TLS on port 25
@@ -206,7 +207,7 @@ class Api extends CI_Controller{
 
         $this->email->initialize($config);
 
-        $this->email->from('noreply@jevikurja.com', 'Jevikurja');
+        $this->email->from('sales@jevikurja.com', 'Jevikurja');
         $this->email->to('debasish.1911@mailinator.com'); // Replace with your recipient
         $this->email->subject('Test Email via SMTP - Port 25');
         $this->email->message('<p>This is a <strong>test email</strong> sent using SMTP on port 25.</p>');
@@ -1023,7 +1024,7 @@ class Api extends CI_Controller{
         $this->load->library('email');
 
         // Email configuration (customize as needed)
-        $this->email->from('noreply@jevikurja.com', 'Jevik Urja');
+        $this->email->from('sales@jevikurja.com', 'Jevik Urja');
         $this->email->to($email);
         $this->email->subject('Forgot Password OTP');
         $this->email->message("To reset your password, use this OTP: " . $otp);

@@ -82,44 +82,52 @@ function product_option_value_exist($product_id){
  }
  
  public function add_new_value($data){
- 	$base=0;
- 	if($this->product_option_value_exist($data['product_id'])==0){
- 		$base=1;
- 	}
- 		return $this->db->query("INSERT INTO product_option_value SET product_id = '" . $data['product_id'] . "',  value_id = '" . $data['value_id'] . "', price = '" . $data['price'] . "',old_price = '" . $data['old_price'] . "',base = '" . $base . "',  stock = '" . $data['stock'] . "',  disc = '" . $data['disc'] . "'");
- 	}
+  $base=0;
+  if($this->product_option_value_exist($data['product_id'])==0){
+    $base=1;
+  }
+  // Check for duplicate size
+  $exists = $this->db->get_where('product_option_value', array('product_id' => $data['product_id'], 'value_id' => $data['value_id']));
+  if ($exists->num_rows() > 0) {
+    // Size already exists, do not insert
+    return false;
+  }
+  return $this->db->query("INSERT INTO product_option_value SET product_id = '" . $data['product_id'] . "',  value_id = '" . $data['value_id'] . "', old_price = '" . $data['old_price'] . "', wb_price = '" . $data['wb_price'] . "', up_price = '" . $data['up_price'] . "', base = '" . $base . "',  stock = '" . $data['stock'] . "',  disc = '" . $data['disc'] . "'");
+ }
 
 	
  public function value_update($data){  
- 	$this->db->trans_begin();
-	 for ($i = 0; $i < count($data['pr_value_id']); $i++) {
-	 	if(isset($data["default"]) && $data['pr_value_id'][$i]==$data["default"]){
-	 		$base=1;
-	 	}else{
-	 		$base=0;
-	 	}
-	 	$this->db->update("product_option_value",
-	 		array("price"=>$data['price'][$i],"old_price"=>$data['old_price'][$i],"base"=>$base,"stock"=>$data['stock'][$i],"disc"=>$data['disc'][$i]),array("id"=>$data['pr_value_id'][$i])
-	 	);
+  $this->db->trans_begin();
+  for ($i = 0; $i < count($data['pr_value_id']); $i++) {
+    if(isset($data["default"]) && $data['pr_value_id'][$i]==$data["default"]){
+      $base=1;
+    }else{
+      $base=0;
+    }
+    $this->db->update("product_option_value",
+      array(
+        // "price"=>$data['price'][$i],
+        "old_price"=>$data['old_price'][$i],
+        "wb_price"=>$data['wb_price'][$i],
+        "up_price"=>$data['up_price'][$i],
+        "base"=>$base,
+        "stock"=>$data['stock'][$i],
+        "disc"=>$data['disc'][$i]
+      ),array("id"=>$data['pr_value_id'][$i])
+    );
 
-	 	if($data["stock_mode"]==1){
-	 		$this->db->update("product",array("base_unit_value_stock"=>0,"show_unit_in"=>0),array("id"=>$data["product_id"]),1);
-	 	}
-
-		/*$main_update = $this->db->query("UPDATE product_option_value SET operation = '".$data['operation'][$i]."', price = '".$data['price'][$i]."' WHERE id = '".$data['pr_value_id'][$i]."'");
-	 
-		if($main_update){
-			return true;
-		}*/
-	 } 
-	 if($this->db->trans_status()===FALSE){
-	 	$this->db->trans_rollback();
-	 	return false;
-	 }else{
-	 	$this->db->trans_commit();
-	 	return true;
-	 }
-	}
+    if($data["stock_mode"]==1){
+      $this->db->update("product",array("base_unit_value_stock"=>0,"show_unit_in"=>0),array("id"=>$data["product_id"]),1);
+    }
+  }
+  if($this->db->trans_status()===FALSE){
+    $this->db->trans_rollback();
+    return false;
+  }else{
+    $this->db->trans_commit();
+    return true;
+  }
+ }
 	
  public function delete_value($data){
 		return $this->db->query("DELETE FROM product_option_value WHERE id = '" . (int)$data . "'");
@@ -135,24 +143,24 @@ function product_option_value_exist($product_id){
  
  }
 	function get_values($option_id, $product_id){
-		$this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id');
+		$this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, product_option_value.wb_price, product_option_value.up_price');
 		$this->db->where('option_id', $option_id);
 		$this->db->where('product_id', $product_id);
 		$this->db->join('product_option_value', 'product_option_value.value_id = option_value.option_value_id');
 		$this->db->where('language_id', 2);
+		$this->db->order_by('option_value.value_name', 'ASC'); // Sort by size name ascending
 		$query = $this->db->get("option_value");
 		return $query->result();
 		//echo $this->db->last_query(); exit();
 
 	}
-	
+
 	function get_values_list($option_id){
- 				$this->db->where('option_id', $option_id);
- 				$this->db->where('language_id', 2);
-				$query = $this->db->get("option_value");
-				return $query->result();
-
-
+		$this->db->where('option_id', $option_id);
+		$this->db->where('language_id', 2);
+		$this->db->order_by('value_name', 'ASC'); // Sort by size name ascending
+		$query = $this->db->get("option_value");
+		return $query->result();
 	}
 
 	function update_shared_stock($shared_stock,$option_value_id,$product_id){
@@ -182,7 +190,6 @@ function product_option_value_exist($product_id){
 }
 
 
-    
 
- 
- 
+
+

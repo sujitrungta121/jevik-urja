@@ -134,8 +134,13 @@ class Product_option extends CI_Controller {
 				$this->session->set_flashdata('action_message_type', 'success');
 				redirect($_SERVER['HTTP_REFERER']); 
 			}else{
-				$this->session->set_flashdata('action_message', 'Product Option new value not added!. An error has occured.');
-				$this->session->set_flashdata('action_message_type', 'danger');
+				if($add_new_value === false){
+					$this->session->set_flashdata('action_message', 'This size already exists for this product. Duplicate values are not allowed.');
+					$this->session->set_flashdata('action_message_type', 'warning');
+				}else{
+					$this->session->set_flashdata('action_message', 'Product Option new value not added!. An error has occured.');
+					$this->session->set_flashdata('action_message_type', 'danger');
+				}
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 		}

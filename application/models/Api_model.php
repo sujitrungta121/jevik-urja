@@ -116,7 +116,7 @@ class Api_model extends CI_Model{
 
     function product_list($args=array()){
        /* $this->db->select("cd.category_name,bd.name as brand_name,cd.category_id,pov.price,pov.old_price,p.slug_name,p.id as product_id,p.stock,p.show_unit_in,p.base_unit_value_stock,ov.base_unit_value,pov.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,pov.disc");*/
-       $this->db->select("cd.category_name,bd.name as brand_name,cd.category_id,p.price,p.old_price,p.wb_price,p.up_price,pov.price as variant_price,pov.old_price as variant_old_price,p.slug_name,p.id as product_id,p.stock,p.show_unit_in,p.base_unit_value_stock,ov.base_unit_value,pov.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,pov.disc");
+       $this->db->select("cd.category_name,bd.name as brand_name,cd.category_id,p.wb_price,p.up_price,pov.wb_price as variant_price,pov.old_price as variant_old_price,p.slug_name,p.id as product_id,p.stock,p.show_unit_in,p.base_unit_value_stock,ov.base_unit_value,pov.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,pov.disc");
         $this->db->from("product p");
         $this->db->join("product_description pd","pd.product_id=p.id","inner");
          $this->db->join("category_description cd","cd.category_id=p.category_id and cd.language_id=2","inner");
@@ -147,10 +147,10 @@ class Api_model extends CI_Model{
         }
 
         if(isset($args["price_from"]) && $args["price_from"]>0){
-            $this->db->where("pov.price >=",$args["price_from"]);
+            $this->db->where("pov.wb_price >=",$args["price_from"]);
         }
         if(isset($args["price_to"]) && $args["price_to"]>0){
-            $this->db->where("pov.price <=",$args["price_to"]);
+            $this->db->where("pov.wb_price <=",$args["price_to"]);
         }
 
         if(isset($args["price_range"]) && sizeof($args["price_range"])>0){
@@ -162,8 +162,8 @@ class Api_model extends CI_Model{
                }else{
                     $this->db->or_group_start();
                }
-                $this->db->where("pov.price >=",$price_range["from"]);
-                $this->db->where("pov.price <=",$price_range["to"]);
+                $this->db->where("pov.wb_price >=",$price_range["from"]);
+                $this->db->where("pov.wb_price <=",$price_range["to"]);
                 $this->db->group_end();
             }
             $this->db->group_end();
@@ -197,7 +197,7 @@ class Api_model extends CI_Model{
             $this->db->limit($args["limit"],$args["offset"]);
         }
         if(isset($args["order_by_field"]) && $args["order_by_field"]=="price"){
-            $this->db->order_by("pov.price",$args["ordering"]);
+            $this->db->order_by("pov.wb_price",$args["ordering"]);
         }
         $this->db->group_by('p.id');
         $products=$this->db->get()->result_array();
@@ -206,7 +206,7 @@ class Api_model extends CI_Model{
         $count=0;
         foreach($products as $pr){
             $array[$count]=$pr;
-            $array[$count]["selected_option"]=array("option_name"=>$pr["selected_option_name"],"id"=>$pr["selected_option_id"],"price"=>$pr["price"],"old_price"=>$pr["old_price"],"disc"=>$pr["disc"],"stock"=>$pr["stock"],"base_unit_value"=>$pr["base_unit_value"]);
+            $array[$count]["selected_option"]=array("option_name"=>$pr["selected_option_name"],"id"=>$pr["selected_option_id"],"disc"=>$pr["disc"],"stock"=>$pr["stock"],"base_unit_value"=>$pr["base_unit_value"]);
             ///shared stock logic////////////////////
             if($pr["show_unit_in"]>0){
                 $array[$count]["selected_option"]["stock"]=floor($pr["base_unit_value_stock"]/$pr["base_unit_value"]);
@@ -235,7 +235,7 @@ class Api_model extends CI_Model{
     }
 
     function product_options($product_id){
-        $this->db->select("ov.value_name as option_name,pov.id,pov.price,pov.old_price,pov.disc,pov.stock,ov.base_unit_value");
+        $this->db->select("ov.value_name as option_name,pov.id,pov.wb_price,pov.old_price,pov.disc,pov.stock,ov.base_unit_value");
         $this->db->from("product_option_value pov");
         $this->db->join("option_value ov","ov.option_value_id=pov.value_id","inner");
         $this->db->where("pov.product_id",$product_id);
@@ -328,7 +328,7 @@ class Api_model extends CI_Model{
 
 
     function product_details($id){
-        $this->db->select("cd.category_name,cd.category_id,pd.details,pov.price,pov.old_price,p.id as product_id,p.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,p.base_unit_value_stock,p.show_unit_in,c.slug_name as category_slug_name");
+        $this->db->select("cd.category_name,cd.category_id,pd.details,pov.wb_price,pov.old_price,p.id as product_id,p.stock,p.image,pd.name,ov.value_name as selected_option_name,pov.id as selected_option_id,p.base_unit_value_stock,p.show_unit_in,c.slug_name as category_slug_name");
         $this->db->from("product p");
         $this->db->join("product_description pd","pd.product_id=p.id","inner");
         $this->db->join("category_description cd","cd.category_id=p.category_id and cd.language_id=2","inner");
@@ -351,7 +351,7 @@ class Api_model extends CI_Model{
     }
 
     function product_option_details($option_id){
-        $this->db->select("pov.*,ov.value_name,p.price as base_price, p.old_price as base_old_price");
+        $this->db->select("pov.*,ov.value_name,p.wb_price as base_price, p.wb_old_price as base_old_price");
         $this->db->from("product_option_value pov");
         $this->db->join("option_value ov","ov.option_value_id=pov.value_id","inner");
         $this->db->join("product p","pov.product_id=p.id","left");
@@ -452,13 +452,14 @@ class Api_model extends CI_Model{
 
             }else{
                  //echo "not exist ";
+                 echo $option_details;
                 $option_details=$this->product_option_details($variant_id);
                 if($unit=="KG"){
-                   $unit_price=$option_details['base_price']+$option_details["price"]/1000;
-                   $old_price=$option_details['base_old_price']+$option_details["old_price"]/1000; 
+                   $unit_price=$option_details['base_price']+$option_details["base_price"]/1000;
+                   $old_price=$option_details['base_old_price']+$option_details["base_old_price"]/1000; 
                 }else{
-                   $unit_price=$option_details['base_price']+$option_details["price"]; 
-                   $old_price=$option_details['base_old_price']+$option_details["old_price"];
+                   $unit_price=$option_details['base_price']+$option_details["base_price"]; 
+                   $old_price=$option_details['base_old_price']+$option_details["base_old_price"];
                 }
                 $total_price=$unit_price*$qty;
                 $total_old_price=$old_price*$qty;
@@ -1174,7 +1175,7 @@ class Api_model extends CI_Model{
     }
 
     function orderDetailsData($order_id){
-        $this->db->select("p.image,od.product_id,pd.name as product_name,pov.price,pov.old_price,od.count,od.options as variant_id,ov.value_name as variant_name,od.oid,od.unit_price,od.total_price,od.unit");
+        $this->db->select("p.image,od.product_id,pd.name as product_name,pov.wb_price,pov.old_price,od.count,od.options as variant_id,ov.value_name as variant_name,od.oid,od.unit_price,od.total_price,od.unit");
         $this->db->from("order_detail od");
         $this->db->join("order ord","ord.order_id=od.order_id and ord.type=1","inner");
         $this->db->join("product p","p.id=od.product_id","inner");

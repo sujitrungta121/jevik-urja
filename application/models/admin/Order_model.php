@@ -58,7 +58,7 @@ class Order_model extends CI_Model {
 	}
 	
  	public function products($id){
- 			$this->db->select("p.image,od.product_id,pd.name as product_name,pov.price,pov.old_price,od.unit_price as price,od.count,od.options as variant_id,ov.value_name as variant_name,od.oid,od.unit");
+ 			$this->db->select("p.image,od.product_id,pd.name as product_name,pov.wb_price,pov.old_price,od.unit_price as price,od.count,od.options as variant_id,ov.value_name as variant_name,od.oid,od.unit");
         $this->db->from("order_detail od");
         $this->db->join("order ord","ord.order_id=od.order_id and ord.type=1","inner");
         $this->db->join("product p","p.id=od.product_id","inner");

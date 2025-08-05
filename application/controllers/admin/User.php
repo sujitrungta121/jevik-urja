@@ -123,7 +123,7 @@ class User extends CI_Controller {
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://mail5015.site4now.net',  // Use ssl:// prefix
             'smtp_port' => 465,
-            'smtp_user' => 'noreply@jevikurja.com',
+            'smtp_user' => 'sales@jevikurja.com',
             'smtp_pass' => 'NorT4521*',
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
@@ -135,7 +135,7 @@ class User extends CI_Controller {
         $this->email->initialize($config);
 
         // Compose email
-        $this->email->from('noreply@jevikurja.com', 'Jevikurja Test');
+        $this->email->from('sales@jevikurja.com', 'Jevikurja Test');
         $this->email->to('debasish@mailinator.com');  // Replace with your own email
         $this->email->subject('Test Email from CodeIgniter 3');
         $this->email->message('<p>This is a <strong>test email</strong> sent via SMTP using CodeIgniter 3.</p>');

@@ -101,13 +101,19 @@ class Product extends CI_Controller {
 	$this->load->model("admin/Option_model","om");
        	if($_POST){
 			$add = false;
-			$image=$this->file_uploader("image");
-			$_POST["image"]=base_url("uploads/images/".$image);
+			
+			if(empty($_FILES['image']['name'])){
+				$_POST["image"]="";
+			}else{
+				$image=$this->file_uploader("image");
+				$_POST["image"]=base_url("uploads/images/".$image);
+			}
+			
 			$product_id = $this->pm->add($_POST);
 			if($product_id){
 				$this->session->set_flashdata('action_message', 'New product added!');
 				$this->session->set_flashdata('action_message_type', 'success');
-				//$this->session->set_flashdata("redirection_uri","admin/product/lists");
+				$this->session->set_flashdata("redirection_uri","admin/product/lists");
 				redirect("admin/product_option/detail/25/".$product_id);
 				//redirect($_SERVER['HTTP_REFERER']);
 			}else{
