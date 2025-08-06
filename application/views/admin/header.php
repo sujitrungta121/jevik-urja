@@ -157,6 +157,9 @@ $.notify({
                      <li>
                         <a href="<?php echo $this->config->item('admin_url'); ?>category/lists"><i class="fa fa-list"></i> Categorys</a>
                     </li>
+                       <li>
+                        <a href="<?php echo $this->config->item('admin_url'); ?>news"><i class="fa fa-newspaper-o"></i> News Management</a>
+                    </li>
                     <li>
                         <a href="<?php echo $this->config->item('admin_url'); ?>Brand/lists"><i class="fa fa-arrows"></i> Brands</a>
                     </li>

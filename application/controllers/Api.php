@@ -1166,6 +1166,30 @@ class Api extends CI_Controller{
         echo json_encode(array("status"=>"success","status_code"=>1,"msg"=>"Data Fetched Successfully","details"=>$details));
     }
 
+    function get_latest_news(){
+        $this->load->model("admin/news_model","nm");
+        $news_data = $this->nm->get_news();
+        
+        if($news_data){
+            echo json_encode(array(
+                "status" => "success",
+                "status_code" => 1,
+                "msg" => "News fetched successfully",
+                "news" => array(
+                    "text" => $news_data->news_text,
+                    "date" => $news_data->news_date,
+                    "formatted_date" => date('d/m/Y', strtotime($news_data->news_date))
+                )
+            ));
+        } else {
+            echo json_encode(array(
+                "status" => "failed",
+                "status_code" => 0,
+                "msg" => "No news available"
+            ));
+        }
+    }
+
     /*function forgotPassword(){
     	$this->load->library("Sms");
     	$number=$this->input->post("mobile");

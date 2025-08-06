@@ -190,6 +190,9 @@ $.notify({
                         <a href="<?php echo $this->config->item('admin_url'); ?>Page"><i class="fa fa-pagelines"></i> Pages</a>
                     </li>
 
+                    <li>
+                        <a href="<?php echo $this->config->item('admin_url'); ?>news"><i class="fa fa-newspaper-o"></i> News Management</a>
+                    </li>
 
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#reports"><i class="fa fa-fw fa-asterisk"></i> Reports<i class="fa fa-fw fa-caret-down"></i></a>
