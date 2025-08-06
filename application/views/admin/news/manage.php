@@ -21,14 +21,7 @@
                         <div class="form-group">
                             <label for="news_text" class="col-sm-2 control-label">News Text</label>
                             <div class="col-sm-10">
-                                <!-- <textarea 
-                                    name="news_text" 
-                                    id="news_text" 
-                                    rows="5" 
-                                    class="form-control"
-                                    placeholder="Enter today's news..."
-                                    required><?php echo $news_data ? $news_data->news_text : ''; ?></textarea> -->
-                                    <input type="text" style="width: 100%;" name="news_text" id="news_text" required value="<?php echo $news_data ? $news_data->news_text : ''; ?>"></input>
+                                    <textarea style="width: 100%;" class='form-control' name="news_text" id="news_text" required><?php echo $news_data ? $news_data->news_text : ''; ?></textarea>
                             </div>
                         </div>
                         
@@ -79,7 +72,9 @@
                         <?php if($news_data): ?>
                             <h4>Date: <?php echo date('d/m/Y', strtotime($news_data->news_date)); ?></h4>
                             <hr>
-                            <p><?php echo nl2br(htmlspecialchars($news_data->news_text)); ?></p>
+                            <div style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; white-space: pre-wrap; max-width: 100%;">
+                                <?php echo $news_data->news_text; ?>
+                            </div>
                             <hr>
                             <small class="text-muted">
                                 Last Updated: <?php echo date('d/m/Y H:i:s', strtotime($news_data->updated_at)); ?>
