@@ -206,7 +206,20 @@ class Api extends CI_Controller{
 		$banner_list=$this->am->banner_list();
 		$brand_list=$this->am->brand_list();
 
-		$data=array("details"=>$array,"banners"=>$banner_list,"brands"=>$brand_list,"user_details"=>
+		// Get latest news data
+		$this->load->model("admin/news_model","nm");
+		$news_data = $this->nm->get_news();
+		
+		$news_info = null;
+		if($news_data){
+			$news_info = array(
+				"text" => $news_data->news_text,
+				"date" => $news_data->news_date,
+				"formatted_date" => date('d/m/Y', strtotime($news_data->news_date))
+			);
+		}
+
+		$data=array("details"=>$array,"banners"=>$banner_list,"brands"=>$brand_list,"news"=>$news_info,"user_details"=>
 				array(
 					"user_id"=>$user_details["user_id"],
 					"name"=>$user_details["name"],
@@ -597,23 +610,23 @@ class Api extends CI_Controller{
 
 		$name=$this->input->post("name");
 		$mobile_no=$this->input->post("mobile_no");
-		$pin_code=$this->input->post("pin_code");
+		// $pin_code=$this->input->post("pin_code");
 		$locality=$this->input->post("locality");
 		$address=$this->input->post("address");
 		$city=$this->input->post("city");
 		$state_id=$this->input->post("state_id");
 		$landmark=$this->input->post("landmark");
 		//print_r($_POST); exit();
-		$exist=$this->am->pin_code_availability_check($pin_code,$user_id);
-		if($exist==0){
-			echo json_encode(array("status"=>"failed","status_code"=>0,"msg"=>"Not deliverable to this Pin Code area"));
-				exit();
-		}
+		// $exist=$this->am->pin_code_availability_check($pin_code,$user_id);
+		// if($exist==0){
+			// echo json_encode(array("status"=>"failed","status_code"=>0,"msg"=>"Not deliverable to this Pin Code area"));
+			// 	exit();
+		// }
 
 		
 		
 		//$saved_id=0;
-		$saved_id=$this->am->save_address($name,$mobile_no,$pin_code,$locality,$address,$city,$state_id,$landmark,$user_id);
+		$saved_id=$this->am->save_address($name,$mobile_no,$locality,$address,$city,$state_id,$landmark,$user_id);
 		$address_list=$this->am->address_list($user_id);
 		echo json_encode(array("status"=>"success","address_id"=>$saved_id,"address_list"=>$address_list));
 		

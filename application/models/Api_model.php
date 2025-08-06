@@ -867,9 +867,9 @@ class Api_model extends CI_Model{
         return $this->db->get()->result_array();
     }
 
-    function save_address($name,$mobile_no,$pin_code,$locality,$address,$city,$state_id,$landmark,$user_id){
+    function save_address($name,$mobile_no,$locality,$address,$city,$state_id,$landmark,$user_id){
         $this->db->trans_begin();
-        $this->db->insert("address",array("name"=>$name,"mobile_no"=>$mobile_no,"pin_code"=>$pin_code,"locality"=>$locality,"address"=>$address,"city"=>$city,"state_id"=>$state_id,"landmark"=>$landmark,"user_id"=>$user_id));
+        $this->db->insert("address",array("name"=>$name,"mobile_no"=>$mobile_no,"locality"=>$locality,"address"=>$address,"city"=>$city,"state_id"=>$state_id,"landmark"=>$landmark,"user_id"=>$user_id));
         $id=$this->db->insert_id();
 
         if($this->db->trans_status()===false){

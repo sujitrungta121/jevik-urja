@@ -6,13 +6,13 @@
  
  
 <script>
-  $(document).ready(function() {
-    // Apply Summernote to every <textarea> element
-    $('textarea').summernote({
-      height: 300,  // Set the height of the editor
-      placeholder: 'Start typing...',  // Placeholder text
-    });
+ $(document).ready(function() {
+  // Apply Summernote to all textareas EXCEPT those with class 'no-editor'
+  $('textarea:not(.no-editor)').summernote({
+    height: 300,
+    placeholder: 'Start typing...',
   });
+});
 </script>
 
 

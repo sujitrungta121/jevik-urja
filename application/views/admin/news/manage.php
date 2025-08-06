@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label for="news_text" class="col-sm-2 control-label">News Text</label>
                             <div class="col-sm-10">
-                                    <textarea style="width: 100%;" class='form-control' name="news_text" id="news_text" required><?php echo $news_data ? $news_data->news_text : ''; ?></textarea>
+                                    <textarea style="width: 100%;" class="form-control no-editor" name="news_text"  rows="6" id="news_text" required><?php echo $news_data ? $news_data->news_text : ''; ?></textarea>
                             </div>
                         </div>
                         
