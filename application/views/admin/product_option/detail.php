@@ -53,7 +53,7 @@
  <!-- <td><input type="text"  class="form-control" name="price[]" ng-model="row.price" ng-change="getDiscountPercent(row)"></td> -->
  <td><input type="text" class="form-control" name="wb_price[]" ng-model="row.wb_price"></td>
  <td><input type="text" class="form-control" name="up_price[]" ng-model="row.up_price"></td>
- <td>{{row.order}}</td>
+ <td><input type="text" class="form-control" name="orders[]" ng-model="row.orders"></td>
 
  <?php if(empty($this->session->userdata("user_brand_id"))){?>
  <td>

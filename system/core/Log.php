@@ -187,7 +187,7 @@ class CI_Log {
 
 		if ( ! file_exists($filepath))
 		{
-			$newfile = TRUE;
+			$jevik = TRUE;
 			// Only add protection to php files
 			if ($this->_file_ext === 'php')
 			{
@@ -228,7 +228,7 @@ class CI_Log {
 		flock($fp, LOCK_UN);
 		fclose($fp);
 
-		if (isset($newfile) && $newfile === TRUE)
+		if (isset($jevik) && $jevi === TRUE)
 		{
 			chmod($filepath, $this->_file_permissions);
 		}

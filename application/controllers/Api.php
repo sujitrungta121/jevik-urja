@@ -568,7 +568,7 @@ class Api extends CI_Controller{
 				$disc=($list["old_price"]-$list["wb_price"])*100/$list["old_price"];
 			}
 
-			$array[]=array("option_value_row_id"=>$list["option_value_row_id"],"option_id"=>$list["option_id"],"value_name"=>$list["value_name"],"pr_value_id"=>$list["pr_value_id"],"disc"=>$disc,"wb_price"=>$list['wb_price'],"up_price"=>$list['up_price'],"base"=>$list["base"],"stock"=>$list["stock"],"order"=>$list["order"]);
+			$array[]=array("option_value_row_id"=>$list["option_value_row_id"],"option_id"=>$list["option_id"],"value_name"=>$list["value_name"],"pr_value_id"=>$list["pr_value_id"],"disc"=>$disc,"wb_price"=>$list['wb_price'],"up_price"=>$list['up_price'],"base"=>$list["base"],"stock"=>$list["stock"],"orders"=>$list["orders"]);
 		}
 
 		echo json_encode(array("status"=>"success","list"=>$array));	

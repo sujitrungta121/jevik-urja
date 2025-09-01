@@ -674,12 +674,12 @@ class Api_model extends CI_Model{
 
 
     function productOptions($product_id){
-        $this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, option_value.order');
+        $this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, product_option_value.orders');
                 $this->db->where('option_id', 25);
                 $this->db->where('product_id', $product_id);
                 $this->db->join('product_option_value', 'product_option_value.value_id = option_value.option_value_id');
                 $this->db->where('language_id', 2);
-                $this->db->order_by('option_value.order', 'ASC'); // Order by the new order field
+                $this->db->order_by('product_option_value.orders', 'ASC'); // Order by the new order field
                 $query = $this->db->get("option_value");
                 return $query->result_array();
     }

@@ -169,6 +169,9 @@ $.notify({
                      <li>
                         <a href="<?php echo $this->config->item('admin_url'); ?>option/detail/25/2"><i class="fa fa-life-ring"></i> Option</a>
                     </li>
+                     <li>
+                        <a href="<?php echo $this->config->item('admin_url'); ?>order_options"><i class="fa fa-newspaper-o"></i>Order Options</a>
+                    </li>
                     <li>
                         <a href="<?php echo $this->config->item('admin_url'); ?>Pin_code"><i class=" fa fa-filter"></i> Pin Codes</a>
                     </li>

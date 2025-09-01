@@ -92,9 +92,9 @@ function product_option_value_exist($product_id){
     // Size already exists, do not insert
     return false;
   }
-  return $this->db->query("INSERT INTO product_option_value SET product_id = '" . $data['product_id'] . "',  value_id = '" . $data['value_id'] . "', old_price = '" . $data['old_price'] . "', wb_price = '" . $data['wb_price'] . "', up_price = '" . $data['up_price'] . "', base = '" . $base . "',  stock = '" . $data['stock'] . "',  disc = '" . $data['disc'] . "'");
- }	
- public function value_update($data){  
+  return $this->db->query("INSERT INTO product_option_value SET product_id = '" . $data['product_id'] . "',  value_id = '" . $data['value_id'] . "', old_price = '" . $data['old_price'] . "', wb_price = '" . $data['wb_price'] . "', up_price = '" . $data['up_price'] . "', base = '" . $base . "',  stock = '" . $data['stock'] . "', orders = '" . $data['orders'] . "',  disc = '" . $data['disc'] . "'");
+ }
+ public function value_update($data){
   $this->db->trans_begin();
   for ($i = 0; $i < count($data['pr_value_id']); $i++) {
     if(isset($data["default"]) && $data['pr_value_id'][$i]==$data["default"]){
@@ -108,6 +108,7 @@ function product_option_value_exist($product_id){
         "old_price"=>$data['old_price'][$i],
         "wb_price"=>$data['wb_price'][$i],
         "up_price"=>$data['up_price'][$i],
+		"orders"=>$data['orders'][$i],
         "base"=>$base,
         "stock"=>$data['stock'][$i],
         "disc"=>$data['disc'][$i],
@@ -138,15 +139,14 @@ function product_option_value_exist($product_id){
 		if($main_update){
 			return true;
 		}
- 
- }
+	}
 	function get_values($option_id, $product_id){
-		$this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, product_option_value.wb_price, product_option_value.up_price, option_value.order');
+		$this->db->select('option_value.*, product_option_value.*, product_option_value.id AS pr_value_id, product_option_value.wb_price, product_option_value.orders');
 		$this->db->where('option_id', $option_id);
 		$this->db->where('product_id', $product_id);
 		$this->db->join('product_option_value', 'product_option_value.value_id = option_value.option_value_id');
 		$this->db->where('language_id', 2);
-		$this->db->order_by('option_value.order', 'ASC'); // Sort by order field
+		$this->db->order_by('product_option_value.orders', 'ASC'); // Sort by order field
 		$query = $this->db->get("option_value");
 		return $query->result();
 		//echo $this->db->last_query(); exit();
